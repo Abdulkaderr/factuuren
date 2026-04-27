@@ -1,0 +1,6 @@
+Product Name,Description,Unit,Rate,Category,Tax Rate,Track Inventory,Low Stock Level
+Office Chair,Ergonomic office chair with lumbar support,Item,150.00,Furniture,VAT,yes,5
+Web Hosting,Monthly web hosting service,Month,29.99,Services,0,no,0
+Laptop,Business laptop computer,Item,899.00,8,15,yes,2
+Consulting Hour,Professional consulting services,Hour,125.00,Services,Sales Tax,no,0
+Printer Ink,Black ink cartridge,Item,45.99,Office Supplies,5,yes,10

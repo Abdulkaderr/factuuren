@@ -1,0 +1,36 @@
+<?php
+
+/** --------------------------------------------------------------------------------
+ * This middleware checks the authenticated users permissions to manage customers
+ *
+ * @package    Grow CRM
+ * @author     NextLoop
+ *----------------------------------------------------------------------------------*/
+
+namespace App\Http\Middleware\Landlord\Customers;
+
+use Closure;
+use Log;
+
+class Manage {
+
+    /**
+     * Check if the current user has permission to manage customers
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next) {
+
+        //get the authenticated users role permissions
+        $permissions = \App\Models\Landlord\Role::where('role_id', auth()->user()->role_id)->first();
+
+        //check permission to manage customers
+        if ($permissions->role_permissions_customers != 'manage') {
+            Log::error("permission denied - the user does not have permission for this action", ['process' => 'middleware.landlord.customers.manage', 'ref' => config('app.debug_ref'), 'file' => basename(__FILE__), 'line' => __line__]);
+            abort(403);
+        }
+
+        return $next($request);
+    }
+}
